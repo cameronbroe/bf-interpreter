@@ -19,18 +19,18 @@ typedef struct {
 	Brainfuck virtual machine.
 */
 
-void shift_right(struct bf_machine *machine); // Shift the pointer to the right
+void shift_right(bf_machine *machine); // Shift the pointer to the right
 
-void shift_left(struct bf_machine *machine); // Shift the pointer to the left
+void shift_left(bf_machine *machine); // Shift the pointer to the left
 
-void increment_ptr(struct bf_machine *machine); // Increment the value at the pointer
+void increment(bf_machine *machine); // Increment the value at the pointer
 
-void decrement_ptr(struct bf_machine *machine); // Decrement the value at the pointer
+void decrement(bf_machine *machine); // Decrement the value at the pointer
 
-void output_ptr(struct bf_machine *machine); // Output the value at the pointer as ASCII
+void output_ptr(bf_machine *machine); // Output the value at the pointer as ASCII
 
-void input_ptr(struct bf_machine *machine); // Take a byte as input to put at pointer
+void input_ptr(bf_machine *machine); // Take a byte as input to put at pointer
 
-void loop_segment(struct bf_machine *machine, char[] segment); // Loops a given segment of code.
+void loop_segment(bf_machine *machine , char segment[]); // Loops a given segment of code.
 
-void output_debug(struct bf_machine *machine); // Outputs the current pointer and value at pointer for debugging
+void output_debug(bf_machine *machine); // Outputs the current pointer and value at pointer for debugging
