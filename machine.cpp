@@ -35,3 +35,8 @@ void output_debug(bf_machine *machine) {
 	int val = (int) *curr;
 	std::cout << "Value at current pointer " << val << std::endl;
 }
+
+void input_ptr(bf_machine *machine) {
+	char ch = getchar(); // Get the input from the user
+	*machine->arr_ptr = ch; // Put the value into the machine.
+}
