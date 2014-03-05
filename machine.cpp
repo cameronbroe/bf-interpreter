@@ -6,7 +6,10 @@
 #include <iostream>
 #include <stdio.h> // We need this for a few C output functions
 #include "machine.h"
+// Private functions
 
+
+// Public - machine.h functions
 void shift_right(bf_machine *machine) {
 	++machine->arr_ptr; // Move the pointer right by one in the array
 }
@@ -39,4 +42,8 @@ void output_debug(bf_machine *machine) {
 void input_ptr(bf_machine *machine) {
 	char ch = getchar(); // Get the input from the user
 	*machine->arr_ptr = ch; // Put the value into the machine.
+}
+
+void loop_segment(bf_machine *machine, char segment[]) {
+
 }
