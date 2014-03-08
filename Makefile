@@ -1,2 +1,2 @@
 all:
-	g++ machine.cpp main.cpp -o mindblow
+	g++ machine.cpp main.cpp parser.cpp -o mindblow

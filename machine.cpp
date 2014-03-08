@@ -5,11 +5,19 @@
 #include <string>
 #include <iostream>
 #include <stdio.h> // We need this for a few C output functions
+#include <string.h> // We need this for memset
 #include "machine.h"
+#include "parser.h"
 // Private functions
-
+int count(char code[]) {
+	return std::string(code).length();
+}
 
 // Public - machine.h functions
+void initialize_machine(bf_machine *machine) {
+	machine->arr_ptr = machine->memory; // Initialize the pointer to be at the start of the array
+}
+
 void shift_right(bf_machine *machine) {
 	++machine->arr_ptr; // Move the pointer right by one in the array
 }
@@ -44,6 +52,17 @@ void input_ptr(bf_machine *machine) {
 	*machine->arr_ptr = ch; // Put the value into the machine.
 }
 
-void loop_segment(bf_machine *machine, char segment[]) {
-
+void loop_segment(bf_machine *machine, char code[], int startIndex, int endIndex, int *arr_pos) {
+	char *ptr_copy = machine->arr_ptr; // Get a copy of the current pointer so we can test the value at the pointer of the array creation
+	int currentIndex = startIndex;
+	while(*ptr_copy) {
+		parse_char(code[currentIndex], machine, &currentIndex, code);
+		currentIndex++;
+		if(currentIndex >= endIndex) {
+			currentIndex = startIndex; // Restart loop
+			std::cout << std::endl;
+		}
+		std::cout << code[currentIndex];
+	}
+	*arr_pos = endIndex + 1;
 }

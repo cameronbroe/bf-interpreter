@@ -8,6 +8,9 @@
 	that affect the values of these variables
 */
 
+// Once-only Header
+#ifndef FILE_MACHINE_FOUND
+#define FILE_MACHINE_FOUND
 #define MEMORY_SIZE 30000 // Classic Brainfuck implementation has the memory array size set to 30k
 
 typedef struct {
@@ -18,6 +21,8 @@ typedef struct {
 /*	These functions emulate the processor commands for the
 	Brainfuck virtual machine.
 */
+
+void initialize_machine(bf_machine *machine); // Initialize the machine to have 0 in all the array
 
 void shift_right(bf_machine *machine); // Shift the pointer to the right
 
@@ -31,6 +36,8 @@ void output_ptr(bf_machine *machine); // Output the value at the pointer as ASCI
 
 void input_ptr(bf_machine *machine); // Take a byte as input to put at pointer
 
-void loop_segment(bf_machine *machine , char segment[]); // Loops a given segment of code.
+void loop_segment(bf_machine *machine , char code[], int startIndex, int endIndex, int *arr_pos); // Loops a given segment of code.
 
 void output_debug(bf_machine *machine); // Outputs the current pointer and value at pointer for debugging
+
+#endif
