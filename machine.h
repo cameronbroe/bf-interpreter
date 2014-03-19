@@ -16,6 +16,7 @@
 typedef struct {
 	char memory[MEMORY_SIZE]; // Array of characters simulating machine memory
 	char *arr_ptr; // This is the "pointer" that holds the address we are currently working with
+	int ptr_pos; // This is the numerical value for the pointer we are at
 } bf_machine;
 
 /*	These functions emulate the processor commands for the
@@ -36,7 +37,7 @@ void output_ptr(bf_machine *machine); // Output the value at the pointer as ASCI
 
 void input_ptr(bf_machine *machine); // Take a byte as input to put at pointer
 
-void loop_segment(bf_machine *machine , char code[], int startIndex, int endIndex, int *arr_pos); // Loops a given segment of code.
+void loop_segment(bf_machine *machine , char code[], int startIndex, int endIndex, int *arr_pos, int *loopc); // Loops a given segment of code.
 
 void output_debug(bf_machine *machine); // Outputs the current pointer and value at pointer for debugging
 
