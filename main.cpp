@@ -12,7 +12,7 @@ int main() {
 	initialize_machine(&instance);
 	int loop_count = 0;
 	int *loopc = &loop_count;
-	char code[] = "+++[>+>+<-]>>#<#";
+	char code[] = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 	for(int i = 0; i < code_count(code); i++) {
 		//std::cout << i << std:endl;
 		parse_char(code[i], &instance, &i, code, loopc);

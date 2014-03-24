@@ -37,7 +37,9 @@ void output_ptr(bf_machine *machine); // Output the value at the pointer as ASCI
 
 void input_ptr(bf_machine *machine); // Take a byte as input to put at pointer
 
-void loop_segment(bf_machine *machine , char code[], int startIndex, int endIndex, int *arr_pos, int *loopc); // Loops a given segment of code.
+void start_loop(bf_machine *machine , char code[], int startIndex, int endIndex, int *arr_pos, int *loopc); // Starts a loop
+
+void end_loop(bf_machine *machine, char code[], int startIndex, int endIndex, int *arr_pos, int *loopc); // Checks to see if loop should end
 
 void output_debug(bf_machine *machine); // Outputs the current pointer and value at pointer for debugging
 
