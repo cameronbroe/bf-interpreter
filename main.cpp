@@ -10,10 +10,12 @@ int code_count(char code[]) {
 int main() {
 	bf_machine instance;
 	initialize_machine(&instance);
-	char code[] = "++[>+<-]#>#";
+	int loop_count = 0;
+	int *loopc = &loop_count;
+	char code[] = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 	for(int i = 0; i < code_count(code); i++) {
-		//std::cout << i << std::endl;
-		parse_char(code[i], &instance, &i, code);
+		//std::cout << i << std:endl;
+		parse_char(code[i], &instance, &i, code, loopc);
 	}
 	return 0;
 }
