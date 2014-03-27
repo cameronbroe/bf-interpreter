@@ -4,7 +4,7 @@
  * Syntax checker - Michael Irick
  * returns the index of the first error or -1 for no errors
  */
-int	checkSyntax(std::string code)
+int	check_syntax(std::string code)
 {
 	std::list<char> stack;
 	for(int i = 0; i < (int) code.size(); i++)
