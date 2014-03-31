@@ -3,6 +3,7 @@
 #include "file.h"
 #include <string>
 #include <fstream>
+#include <iostream>
 
 
 // Public functions
@@ -19,6 +20,8 @@ char* extract_code(std::string filename) {
 		code = new char[length]; // Initialize the array for our code
 		brainfuck_file.read(code, length); // Read the code
 		brainfuck_file.close(); // Close the file
+	} else {
+		std::cout << "File does not exist." << std::endl;
 	}
 	return code; // Return the code
 }
