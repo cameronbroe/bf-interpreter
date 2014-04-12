@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <unistd.h> // For getopt()
 #include "machine.h"
@@ -9,7 +10,23 @@
 int code_count(char code[]) {
 	return std::string(code).length();
 }
+void print_array(bf_machine *instance, int index, int code)
+{
+	std::cout << "+---------------+" << std::endl;
+        int begin = index - 3;
+        if( begin < 0 )
+        	begin = 0;
+	for(int j = begin; j < begin+7; j++)
+        {
+        	char buf[512];
+                sprintf(buf, "%-14d | %-14d ", instance->memory[j], j);
+                std::cout << buf;
+                if( j == code )
+                	std::cout << "<------------- Pointer";
+                std::cout << std::endl;
+        }
 
+}
 int main(int argc, char* argv[]) {
 	bf_machine instance;
 	initialize_machine(&instance);
@@ -18,7 +35,7 @@ int main(int argc, char* argv[]) {
 	char* code;
 	char* eval_code;
 	int c;
-	bool syntax_check_only = false, evaluate_code = false, no_file_flag = false;
+	bool syntax_check_only = false, evaluate_code = false, no_file_flag = false, debug_code;
 	/*if(argc > 0) {
 		char* arg_val = argv[1];
 		std::string file = arg_val;
@@ -27,7 +44,7 @@ int main(int argc, char* argv[]) {
 	if(argc < 2) {
 		no_file_flag = true;
 	}
-	while((c = getopt(argc, argv, "ce:")) != -1) {
+	while((c = getopt(argc, argv, "ced:")) != -1) {
 		switch(c) {
 			case 'c':
 				syntax_check_only = true;
@@ -35,6 +52,9 @@ int main(int argc, char* argv[]) {
 			case 'e':
 				evaluate_code = true;
 				eval_code = optarg;
+				break;
+			case 'd':
+				debug_code = true;
 				break;
 			case '?':
 				if(optopt == 'e') {
@@ -60,9 +80,28 @@ int main(int argc, char* argv[]) {
 			if(syntax_check_only) {
 				std::cout << "Syntax OK" << std::endl;
 			} else {
+				int index = 0;
+				if(debug_code)
+					std::cout << "DEBUG MODE - step to step - right shifts right - left shifts left" << std::endl;
 				for(int i = 0; i < code_count(code); i++) {
 					//std::cout << i << std:endl;
+					if(debug_code)
+					{
+						while(true)
+						{
+							print_array(&instance, index, i);
+							std::string command = "";
+							std::cin >> command;
+							if(command.compare("step"))
+								break;
+							if(command.compare("right"))
+								index++;
+							if(command.compare("left"))
+								index--;
+						}
+					}
 					parse_char(code[i], &instance, &i, code, loopc);
+
 				}
 			}
 		} else {
