@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <string>
 #include <unistd.h> // For getopt()
+#include <stdlib.h> // for atoi()
 #include "machine.h"
 #include "parser.h"
 #include "file.h"
@@ -21,7 +22,7 @@ void print_array(bf_machine *instance, int index, int code)
         	char buf[512];
                 sprintf(buf, "%-14d | %-14d ", instance->memory[j], j);
                 std::cout << buf;
-                if( j == code )
+                if( j == index )
                 	std::cout << "<------------- Pointer";
                 std::cout << std::endl;
         }
@@ -46,7 +47,7 @@ int main(int argc, char* argv[]) {
 	if(argc < 2) {
 		no_file_flag = true;
 	}
-	while((c = getopt(argc, argv, "ced:")) != -1) {
+	while((c = getopt(argc, argv, "ce:d")) != -1) {
 		switch(c) {
 			case 'c':
 				syntax_check_only = true;
@@ -88,25 +89,37 @@ int main(int argc, char* argv[]) {
 				}
 				if(debug_code)
 					std::cout << "DEBUG MODE - step to step - right shifts right - left shifts left" << std::endl;
+				int num_to_step = 0;
 				for(int i = 0; i < code_count(code); i++) {
 					//std::cout << i << std:endl;
-					if(debug_code)
+					if(debug_code && num_to_step == 0)
 					{
 						while(true)
 						{
 							print_array(&instance, index, i);
 							std::string command = "";
 							std::cin >> command;
-							if(command.compare("step"))
+							char cmd = command[0];
+							if(cmd == 's') {
+								if(command[1] != '\0')
+									num_to_step = atoi(&command[1]);
+								else
+									num_to_step = 1;
 								break;
-							if(command.compare("right"))
+							} else if(cmd == 'r') {
 								index++;
-							if(command.compare("left"))
+							} else if(cmd == 'l') {
 								index--;
+							} else if(cmd == 'a') {
+								return 1;
+							} else if(cmd == 'f') {
+								num_to_step = -1;
+								break;
+							}
 						}
 					}
 					parse_char(code[i], &instance, &i, code, loopc);
-
+					num_to_step--;
 				}
 			}
 		} else {
