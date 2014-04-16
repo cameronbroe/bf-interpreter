@@ -7,7 +7,7 @@
 
 
 // Public functions
-char* extract_code(std::string filename) {
+char* extract_code(std::string filename, int *file_status) {
 	std::ifstream brainfuck_file;
 	brainfuck_file.open(filename.c_str());
 	char* code;
@@ -20,8 +20,10 @@ char* extract_code(std::string filename) {
 		code = new char[length]; // Initialize the array for our code
 		brainfuck_file.read(code, length); // Read the code
 		brainfuck_file.close(); // Close the file
+		*file_status = 0;
 	} else {
 		std::cout << "File does not exist." << std::endl;
+		*file_status = 1;
 	}
 	return code; // Return the code
 }

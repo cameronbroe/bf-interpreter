@@ -28,6 +28,8 @@ void print_array(bf_machine *instance, int index, int code)
 
 }
 int main(int argc, char* argv[]) {
+	int file_status = 0;
+	int* file_status_pointer = &file_status;
 	bf_machine instance;
 	initialize_machine(&instance);
 	int loop_count = 0;
@@ -70,7 +72,7 @@ int main(int argc, char* argv[]) {
 	}
 	if(!no_file_flag) {
 		if((optind <= argc) && !evaluate_code) {
-			code = extract_code(argv[optind]);
+			code = extract_code(argv[optind], file_status_pointer);
 		}
 		if(evaluate_code) {
 			code = eval_code;
@@ -81,6 +83,9 @@ int main(int argc, char* argv[]) {
 				std::cout << "Syntax OK" << std::endl;
 			} else {
 				int index = 0;
+				if(file_status == 1) {
+					return 1;
+				}
 				if(debug_code)
 					std::cout << "DEBUG MODE - step to step - right shifts right - left shifts left" << std::endl;
 				for(int i = 0; i < code_count(code); i++) {

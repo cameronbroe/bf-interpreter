@@ -9,6 +9,6 @@
 #include <fstream>
 #include "file.h"
 
-char* extract_code(std::string filename);
+char* extract_code(std::string filename, int *file_status);
 
 #endif
