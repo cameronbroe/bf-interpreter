@@ -1,4 +1,4 @@
-/*	Implementation of machine.h functions.
+/*	Implementation of machine.h functions.:
 	This is the bulk of the actual virtual machine,
 	where all of the code executions will take place.
 */
@@ -56,18 +56,6 @@ void input_ptr(bf_machine *machine) {
 }
 
 void start_loop(bf_machine *machine, char code[], int startIndex, int endIndex, int *arr_pos, int *loopc) {
-	/*char *ptr_copy = machine->arr_ptr; // Get a copy of the current pointer so we can test the value at the pointer of the array creation
-	int currentIndex = startIndex;
-	//(*loopc)++;
-	//std::cout << "Entered loop " << *loopc << std::endl;
-	if(*machine->arr_ptr == 0) {
-		*arr_pos = endIndex;
-	} else {
-		*arr_pos++;
-		(*loopc)++;
-		std::cout << "Entered loop " << *loopc << std::endl;
-	}
-	//std::cout << "Entered loop " << *loopc << std::endl;*/
 	int bal = 1;
 	if(*machine->arr_ptr == '\0') {
 		do {
@@ -82,16 +70,6 @@ void start_loop(bf_machine *machine, char code[], int startIndex, int endIndex, 
 }
 
 void end_loop(bf_machine *machine, char code[], int startIndex, int endIndex, int *arr_pos, int *loopc) {
-	/**if(*machine->arr_ptr != 0) {
-		*arr_pos = startIndex;
-	} else {
-		*arr_pos = endIndex;
-		std::cout << "Exited loop " << *loopc << std::endl;
-		(*loopc)--;
-	}
-	//(*loopc)--;
-	//std::cout << "Exited loop " << *loopc << std::endl;
-	**/
 	int bal = 0;
 	do {
 		if(code[*arr_pos] == '[') {

@@ -13,8 +13,4 @@
 
 void parse_char(char op, bf_machine *machine, int *arr_pos, char code[], int *loopc);
 
-void parse_loop(bf_machine *machine, char code[], int *arr_pos, int *loopc);
-
-int get_loop_start(char code[], int currentPosition, int loopc);
-
 #endif
