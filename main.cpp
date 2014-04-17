@@ -79,7 +79,8 @@ int main(int argc, char* argv[]) {
 			code = eval_code;
 		}
 		std::string code_str = code;
-		if(check_syntax(code_str) == -1) {
+		int syntax_err = check_syntax(code_str);
+		if(syntax_err == -1) {
 			if(syntax_check_only) {
 				std::cout << "Syntax OK" << std::endl;
 			} else {
@@ -123,7 +124,7 @@ int main(int argc, char* argv[]) {
 				}
 			}
 		} else {
-			std::cout << "Syntax error, you have mismatched braces." << std::endl;
+			std::cout << "Syntax error, you have mismatched brace at index: " << syntax_err << std::endl;
 		}
 	} else {
 		std::cout << "You didn't give me anything to interpret! ]=" << std::endl;

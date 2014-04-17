@@ -24,6 +24,6 @@ int	check_syntax(std::string code)
 	}
 	//if the stack is not, then we left a bracket open, error at the end of the code
 	if(!stack.empty())
-        return code.size();
+        return code.size() - 1; // Adjust size by 1 to give array style index
     return -1; //if we got this far, we've encountered no errors, return -1
 }
