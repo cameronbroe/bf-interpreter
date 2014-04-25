@@ -13,6 +13,10 @@ int count(char code[]) {
 	return std::string(code).length();
 }
 
+void flush_input() {
+	while(getchar() != '\n') {}
+}
+
 // Public - machine.h functions
 void initialize_machine(bf_machine *machine) {
 	machine->arr_ptr = machine->memory; // Initialize the pointer to be at the start of the array
@@ -53,6 +57,7 @@ void output_debug(bf_machine *machine) {
 void input_ptr(bf_machine *machine) {
 	char ch = getchar(); // Get the input from the user
 	*machine->arr_ptr = ch; // Put the value into the machine.
+	flush_input();
 }
 
 void start_loop(bf_machine *machine, char code[], int startIndex, int endIndex, int *arr_pos, int *loopc) {
