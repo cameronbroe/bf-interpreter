@@ -14,8 +14,8 @@
 #define MEMORY_SIZE 30000 // Classic Brainfuck implementation has the memory array size set to 30k
 
 typedef struct {
-	char memory[MEMORY_SIZE]; // Array of characters simulating machine memory
-	char *arr_ptr; // This is the "pointer" that holds the address we are currently working with
+	unsigned char memory[MEMORY_SIZE]; // Array of characters simulating machine memory
+	unsigned char *arr_ptr; // This is the "pointer" that holds the address we are currently working with
 	int ptr_pos; // This is the numerical value for the pointer we are at
 } bf_machine;
 

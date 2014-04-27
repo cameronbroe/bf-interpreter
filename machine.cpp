@@ -30,28 +30,28 @@ void shift_left(bf_machine *machine) {
 }
 
 void increment(bf_machine *machine) {
-	char *curr = machine->arr_ptr;
+	unsigned char *curr = machine->arr_ptr;
 	++*curr; // Increment the value at arr_ptr by one
 }
 
 void decrement(bf_machine *machine) {
-	char *curr = machine->arr_ptr;
+	unsigned char *curr = machine->arr_ptr;
 	--*curr; // Decrement the value at arr_ptr by one
 }
 
 void output_ptr(bf_machine *machine) {
-	char *curr = machine->arr_ptr;
+	unsigned char *curr = machine->arr_ptr;
 	putchar(*curr); // Output the value at arr_ptr as ASCII
 }
 
 void output_debug(bf_machine *machine) {
-	char *curr = machine->arr_ptr;
-	int val = (int) *curr;
+	unsigned char *curr = machine->arr_ptr;
+	unsigned int val = (unsigned int) *curr;
 	std::cout << "Value at pointer " << machine->ptr_pos << " is " << val << std::endl;
 }
 
 void input_ptr(bf_machine *machine) {
-	char ch = getchar(); // Get the input from the user
+	unsigned char ch = getchar(); // Get the input from the user
 	*machine->arr_ptr = ch; // Put the value into the machine.
 }
 
