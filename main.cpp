@@ -11,6 +11,11 @@
 int code_count(char code[]) {
 	return std::string(code).length();
 }
+
+void flush_cin() {
+	while(getchar() != '\n') {}
+}
+
 void print_array(bf_machine *instance, int index, int code)
 {
 	std::cout << "+---------------+" << std::endl;
@@ -100,6 +105,7 @@ int main(int argc, char* argv[]) {
 							print_array(&instance, index, i);
 							std::string command = "";
 							std::cin >> command;
+							flush_cin();
 							char cmd = command[0];
 							if(cmd == 's') {
 								if(command[1] != '\0')
