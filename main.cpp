@@ -44,11 +44,7 @@ int main(int argc, char* argv[]) {
 	char* eval_code;
 	int c;
 	bool syntax_check_only = false, evaluate_code = false, no_file_flag = false, debug_code;
-	/*if(argc > 0) {
-		char* arg_val = argv[1];
-		std::string file = arg_val;
-		code = extract_code(file);
-	}*/
+	
 	if(argc < 2) {
 		no_file_flag = true;
 	}
